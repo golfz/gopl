@@ -10,7 +10,25 @@ import (
 	"os"
 )
 
-var palette = []color.Color{color.White, color.Black}
+// Example
+// var palette = []color.Color{color.White, color.Black}
+
+// Exercise 1.5
+// var palette = []color.Color{color.Black, color.RGBA{0x00, 0xff, 0x00, 0xff}}
+
+// Exercise 1.6
+var palette = []color.Color{
+	color.Black,
+	color.RGBA{0x00, 0xff, 0x00, 0xff},
+	color.RGBA{0xff, 0xff, 0x00, 0xff},
+	color.RGBA{0xff, 0x88, 0x00, 0xff},
+	color.RGBA{0xff, 0x00, 0x00, 0xff},
+	color.RGBA{0xff, 0x00, 0xff, 0xff},
+	color.RGBA{0x88, 0x00, 0xff, 0xff},
+	color.RGBA{0x00, 0x00, 0xff, 0xff},
+	color.RGBA{0x00, 0xff, 0xff, 0xff},
+	color.RGBA{0x00, 0xff, 0x88, 0xff},
+}
 
 const (
 	whiteIndex = 0
@@ -38,7 +56,7 @@ func lissajous(out io.Writer) {
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), blackIndex)
+			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), uint8((i%9)+1))
 		}
 		phase += 0.1
 		anim.Delay = append(anim.Delay, delay)
