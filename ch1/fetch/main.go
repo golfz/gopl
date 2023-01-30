@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -13,5 +12,7 @@ func main() {
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Fetch: %v\n", err)
 		}
+
+		fmt.Printf("Status: %s %s", resp.Proto, resp.Status)
 	}
 }
